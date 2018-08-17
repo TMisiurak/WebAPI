@@ -19,4 +19,7 @@
     <Folder Include="Interfaces\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProjectCore\ProjectCore.csproj" />
+  </ItemGroup>
 </Project>
