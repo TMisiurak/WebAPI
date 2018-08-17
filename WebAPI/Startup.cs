@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using DAL.EF;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebAPI
 {
@@ -33,6 +29,11 @@ namespace WebAPI
                         .AllowAnyMethod()
                         .AllowCredentials();
                 });
+            });
+
+            services.AddDbContext<ApplicationContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
         }
 
