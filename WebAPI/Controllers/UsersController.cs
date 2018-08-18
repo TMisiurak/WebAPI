@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using Microsoft.AspNetCore.Cors;
+﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
