@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectCore", "ProjectCore\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{B48C7BC2-7C9C-4347-BC69-52F1BC4B6F05}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{3D1D80EC-22E1-4B04-9047-79B4600242E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{B48C7BC2-7C9C-4347-BC69-52F1BC4B6F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B48C7BC2-7C9C-4347-BC69-52F1BC4B6F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B48C7BC2-7C9C-4347-BC69-52F1BC4B6F05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D1D80EC-22E1-4B04-9047-79B4600242E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D1D80EC-22E1-4B04-9047-79B4600242E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D1D80EC-22E1-4B04-9047-79B4600242E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D1D80EC-22E1-4B04-9047-79B4600242E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection

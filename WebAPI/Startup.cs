@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using DAL.EF;
 using Microsoft.EntityFrameworkCore;
+using DAL.UnitOfWork;
+using DAL.AutoMapper;
 
 namespace WebAPI
 {
@@ -35,6 +37,9 @@ namespace WebAPI
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddSingleton(s => AutoMapperConfig.Instance);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
