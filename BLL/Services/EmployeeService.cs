@@ -45,10 +45,11 @@ namespace BLL.Services
             return result;
         }
 
-        public async Task<int> DeleteById(int id)
+        public async Task<int> Delete(int id)
         {
             // TODO Delete with SoftDelete
-            throw new System.NotImplementedException();
+            int result = await _unitOfWork.Employees.Delete(id);
+            return result;
         }
     }
 }

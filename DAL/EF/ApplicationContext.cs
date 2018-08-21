@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using ProjectCore.Models;
 
 namespace DAL.EF
@@ -25,7 +27,26 @@ namespace DAL.EF
                 entity.HasOne(e => e.Position)
                       .WithMany(p => p.Employees)
                       .HasForeignKey(e => e.PositionId);
+
+                entity.Property(e => e.IsDeleted)
+                      .HasDefaultValue(false);
+
+                entity.Property(c => c.CreatedAt)
+                      .HasDefaultValueSql("SYSUTCDATETIME()");
             });
+
+            modelBuilder.Entity<Position>(entity =>
+            {
+                entity.Property(c => c.CreatedAt)
+                      .HasDefaultValueSql("SYSUTCDATETIME()");
+            });
+
+            foreach (var rel in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                rel.DeleteBehavior = DeleteBehavior.Restrict;
+            }
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

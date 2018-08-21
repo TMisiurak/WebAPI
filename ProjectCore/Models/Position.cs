@@ -1,10 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System;
 
 namespace ProjectCore.Models
 {
     public class Position
     {
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
 
@@ -13,6 +16,9 @@ namespace ProjectCore.Models
 
         [StringLength(250)]
         public string Description { get; set; }
+
+        [Required, Column(TypeName = "datetime")]
+        public DateTime CreatedAt { get; set; }
 
         public ICollection<Employee> Employees { get; set; }
     }

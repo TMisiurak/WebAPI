@@ -10,6 +10,6 @@ namespace BLL.Interfaces
         Task<EmployeeDTO> GetById(int id);
         Task<int> Create(EmployeeDTO employee);
         Task<int> Update(EmployeeDTO employee);
-        Task<int> DeleteById(int id);
+        Task<int> Delete(int id);
     }
 }

@@ -53,7 +53,14 @@ namespace DAL.Repositories
 
         public async Task<int> Delete(int id)
         {
-            db.Set<Employee>().Remove(db.Employees.Find(id));
+            //db.Set<Employee>().Remove(db.Employees.Find(id));
+            //int result = await db.SaveChangesAsync();
+            //return result;
+
+            // TODO Soft Delete
+
+            Employee employee = await db.Employees.FindAsync(id);
+            db.Entry(employee).CurrentValues["IsDeleted"] = true;
             int result = await db.SaveChangesAsync();
             return result;
         }

@@ -32,7 +32,7 @@ namespace WebAPI.Controllers
             }
         }
 
-        [HttpGet("id:int")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var employee = await _employeeService.GetById(id);
@@ -96,10 +96,20 @@ namespace WebAPI.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpPut("{id}")]
+        [Route("{id}/remove")]
         public async Task<IActionResult> Delete(int id)
         {
-            return new NotFoundResult();
+            int result = await _employeeService.Delete(id);
+
+            if (result > 0)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
     }
 }

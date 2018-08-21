@@ -1,10 +1,12 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectCore.Models
 {
     public class Employee
     {
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
 
@@ -20,10 +22,17 @@ namespace ProjectCore.Models
         [Required, StringLength(50)]
         public string LastName { get; set; }
 
-        [Required]
-        public Gender Gender { get; set; }
+        [Required, Column(TypeName = "date")]
+        public DateTime DateOfBirth { get; set; }
+
+        [Required, Column(TypeName = "datetime")]
+        public DateTime CreatedAt { get; set; }
 
         [Required]
+        public bool IsDeleted { get; set; }
+
+        public Gender Gender { get; set; }
+
         public Position Position { get; set; }
     }
 }

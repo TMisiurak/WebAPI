@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProjectCore
 {
@@ -11,6 +12,9 @@ namespace ProjectCore
 
         [Required(ErrorMessage = "LastName is requred")]
         public string LastName { get; set; }
+
+        [Required]
+        public DateTime DateOfBirth { get; set; }
 
         [Required(ErrorMessage = "GenderId is requred")]
         public int GenderId { get; set; }
