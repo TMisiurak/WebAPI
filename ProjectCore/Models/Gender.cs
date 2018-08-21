@@ -9,7 +9,7 @@ namespace ProjectCore.Models
         [Key]
         public int Id { get; set; }
 
-        [Required, StringLength(20)]
+        [Required, StringLength(10)]
         public string Name { get; set; }
 
         public ICollection<Employee> Employees { get; set; }
