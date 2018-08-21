@@ -6,7 +6,6 @@ namespace ProjectCore.Models
 {
     public class Employee
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
 

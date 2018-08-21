@@ -47,7 +47,6 @@ namespace BLL.Services
 
         public async Task<int> Delete(int id)
         {
-            // TODO Delete with SoftDelete
             int result = await _unitOfWork.Employees.Delete(id);
             return result;
         }

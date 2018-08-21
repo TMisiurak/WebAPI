@@ -7,7 +7,6 @@ namespace ProjectCore.Models
 {
     public class Position
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
 
