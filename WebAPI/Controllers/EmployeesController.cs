@@ -96,8 +96,7 @@ namespace WebAPI.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        [Route("{id}/remove")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             int result = await _employeeService.Delete(id);
