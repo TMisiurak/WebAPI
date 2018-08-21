@@ -19,12 +19,12 @@ namespace DAL.Repositories
         }
         public async Task<IList<Employee>> GetAll()
         {
-            return await db.Employees.ToListAsync();
+            return await db.Employees.Where(e => e.IsDeleted == false).ToListAsync();
         }
 
         public async Task<Employee> GetById(int id)
         {
-            Employee employee = await db.Employees.FindAsync(id);
+            Employee employee = await db.Employees.Where(e => e.IsDeleted == false && e.Id == id).FirstOrDefaultAsync();
             return employee;
         }
 
@@ -37,15 +37,6 @@ namespace DAL.Repositories
 
         public async Task<int> Update(Employee employee)
         {
-            // Update with ID
-            //// Finding the existing employee that is going to be updated
-            //Employee existingEmployee = await db.Employees.FindAsync(id);
-
-            //// Changing values of existing entry to an updated ones
-            //db.Entry(existingEmployee).CurrentValues.SetValues(updatedEmployee);
-            //await db.SaveChangesAsync();
-
-            // Update without ID
             db.Entry(employee).State = EntityState.Modified;
             int result = await db.SaveChangesAsync();
             return result;
@@ -53,14 +44,11 @@ namespace DAL.Repositories
 
         public async Task<int> Delete(int id)
         {
-            //db.Set<Employee>().Remove(db.Employees.Find(id));
-            //int result = await db.SaveChangesAsync();
-            //return result;
-
-            // TODO Soft Delete
+            // Soft Delete
 
             Employee employee = await db.Employees.FindAsync(id);
             db.Entry(employee).CurrentValues["IsDeleted"] = true;
+
             int result = await db.SaveChangesAsync();
             return result;
         }
