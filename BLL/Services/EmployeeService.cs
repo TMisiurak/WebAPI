@@ -33,9 +33,10 @@ namespace BLL.Services
             return result;
         }
 
-        public async Task<int> Create(EmployeeDTO employee)
+        public async Task<EmployeeDTO> Create(EmployeeDTO employee)
         {
-            int result = await _unitOfWork.Employees.Create(_mapper.Map<Employee>(employee));
+            await _unitOfWork.Employees.Create(_mapper.Map<Employee>(employee));
+            EmployeeDTO result = _mapper.Map<EmployeeDTO>(employee);
             return result;
         }
 

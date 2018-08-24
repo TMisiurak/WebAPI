@@ -8,7 +8,7 @@ namespace DAL.Interfaces
     {
         Task<IList<Employee>> GetAll();
         Task<Employee>GetById(int id);
-        Task<int> Create(Employee employee);
+        Task<Employee> Create(Employee employee);
         Task<int> Update(Employee employee);
         Task<int> Delete(int id);
     }

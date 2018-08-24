@@ -62,16 +62,9 @@ namespace WebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            int result = await _employeeService.Create(employeeDTO);
+            var result = await _employeeService.Create(employeeDTO);
 
-            if (result >= 0)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                return BadRequest();
-            }
+            return Ok(result);
         }
 
         // TODO Update Action

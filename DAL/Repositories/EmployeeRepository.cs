@@ -19,20 +19,24 @@ namespace DAL.Repositories
         }
         public async Task<IList<Employee>> GetAll()
         {
-            return await db.Employees.Where(e => e.IsDeleted == false).ToListAsync();
+            // TODO filter data using LINQ to SQL
+            var employees = await db.Employees.Where(e => e.IsDeleted == false).ToListAsync();
+
+            return employees;
         }
 
         public async Task<Employee> GetById(int id)
         {
+            // Get entity by id using extension method
             Employee employee = await db.Employees.Where(e => e.IsDeleted == false && e.Id == id).FirstOrDefaultAsync();
             return employee;
         }
 
-        public async Task<int> Create(Employee employee)
+        public async Task<Employee> Create(Employee employee)
         {
             await db.Set<Employee>().AddAsync(employee);
-            int result = await db.SaveChangesAsync();
-            return result;
+            await db.SaveChangesAsync();
+            return employee;
         }
 
         public async Task<int> Update(Employee employee)

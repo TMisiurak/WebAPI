@@ -61,7 +61,7 @@ namespace WebAPI
                     using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
                     {
                         var _applicationContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationContext>();
-                        //DbInitializer.InitializeDatabase(_applicationContext);
+                        DbInitializer.InitializeDatabase(_applicationContext);
                     }
                 }
             }

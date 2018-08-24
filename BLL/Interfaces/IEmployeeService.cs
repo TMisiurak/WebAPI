@@ -8,7 +8,7 @@ namespace BLL.Interfaces
     {
         Task<IList<EmployeeDTO>> GetAll();
         Task<EmployeeDTO> GetById(int id);
-        Task<int> Create(EmployeeDTO employee);
+        Task<EmployeeDTO> Create(EmployeeDTO employee);
         Task<int> Update(EmployeeDTO employee);
         Task<int> Delete(int id);
     }
