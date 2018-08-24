@@ -68,9 +68,9 @@ namespace WebAPI.Controllers
                 return BadRequest();
             }
 
-            int result = await _employeeService.Update(employeeDTO);
+            var result = await _employeeService.Update(employeeDTO);
 
-            return result > 0 ? (IActionResult)Ok(result) : BadRequest();
+            return ModelState.IsValid ? (IActionResult)Ok(result) : BadRequest();
         }
 
         [HttpDelete("{id}")]

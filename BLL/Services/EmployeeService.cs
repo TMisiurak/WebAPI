@@ -40,10 +40,10 @@ namespace BLL.Services
             return result;
         }
 
-        public async Task<int> Update(EmployeeDTO employee)
+        public async Task<EmployeeDTO> Update(EmployeeDTO employee)
         {
-            int result = await _unitOfWork.Employees.Update(_mapper.Map<Employee>(employee));
-            return result;
+            await _unitOfWork.Employees.Update(_mapper.Map<Employee>(employee));
+            return employee;
         }
 
         public async Task<int> Delete(int id)

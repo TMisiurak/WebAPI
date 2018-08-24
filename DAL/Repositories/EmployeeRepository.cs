@@ -39,11 +39,11 @@ namespace DAL.Repositories
             return employee;
         }
 
-        public async Task<int> Update(Employee employee)
+        public async Task<Employee> Update(Employee employee)
         {
             db.Entry(employee).State = EntityState.Modified;
-            int result = await db.SaveChangesAsync();
-            return result;
+            await db.SaveChangesAsync();
+            return employee;
         }
 
         public async Task<int> Delete(int id)
