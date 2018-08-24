@@ -5,9 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using DAL.EF;
 using Microsoft.EntityFrameworkCore;
 using DAL.UnitOfWork;
-using DAL.AutoMapper;
 using BLL.Interfaces;
 using BLL.Services;
+using AutoMapper;
 
 namespace WebAPI
 {
@@ -39,12 +39,11 @@ namespace WebAPI
             {
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")
-                    //c => c.MigrationsAssembly("DAL")
                 );
             });
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddSingleton(s => AutoMapperConfig.Instance);
+            services.AddAutoMapper();
 
             services.AddScoped<IEmployeeService, EmployeeService>();
         }
