@@ -22,28 +22,21 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> GetAll()
         {
             IList<EmployeeDTO> employees = await _employeeService.GetAll();
-            if (employees != null)
-            {
-                return Ok(employees);
-            }
-            else
-            {
-                return NotFound();
-            }
+
+            // Casting of one of the returned objects to IActionResult is necessary
+            // If both of the objects are casted the 'Redundant cast' suggestion will appear
+            // If the cast is removed from one of the objects it will still work fine
+            // Remove casting on both objects and the types won't be implicitly converted
+
+            return employees != null ? (IActionResult)Ok(employees) : NotFound();
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var employee = await _employeeService.GetById(id);
-            if (employee != null)
-            {
-                return Ok(employee);
-            }
-            else
-            {
-                return NotFound();
-            }
+
+            return employee != null ? (IActionResult)Ok(employee) : NotFound();
         }
 
         // TODO Possibly create GetByGender and GetByPosition Actions
@@ -67,8 +60,6 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        // TODO Update Action
-
         [HttpPut]
         public async Task<IActionResult> Update([FromBody]EmployeeDTO employeeDTO)
         {
@@ -79,14 +70,7 @@ namespace WebAPI.Controllers
 
             int result = await _employeeService.Update(employeeDTO);
 
-            if (result > 0)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                return BadRequest();
-            }
+            return result > 0 ? (IActionResult)Ok(result) : BadRequest();
         }
 
         [HttpDelete("{id}")]
@@ -94,14 +78,7 @@ namespace WebAPI.Controllers
         {
             int result = await _employeeService.Delete(id);
 
-            if (result > 0)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                return BadRequest();
-            }
+            return result > 0 ? (IActionResult)Ok(result) : BadRequest();
         }
     }
 }
