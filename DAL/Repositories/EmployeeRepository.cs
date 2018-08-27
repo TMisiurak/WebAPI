@@ -20,7 +20,10 @@ namespace DAL.Repositories
         public async Task<IList<Employee>> GetAll()
         {
             // TODO filter data using LINQ to SQL
-            var employees = await db.Employees.Where(e => e.IsDeleted == false).ToListAsync();
+            var employees = await db.Employees
+                                    .Include(e => e.Position)
+                                    .Where(e => e.IsDeleted == false)
+                                    .ToListAsync();
 
             return employees;
         }
@@ -28,7 +31,10 @@ namespace DAL.Repositories
         public async Task<Employee> GetById(int id)
         {
             // Get entity by id using extension method
-            Employee employee = await db.Employees.Where(e => e.IsDeleted == false && e.Id == id).FirstOrDefaultAsync();
+            Employee employee = await db.Employees
+                                        .Include(e => e.Position)
+                                        .Where(e => e.IsDeleted == false && e.Id == id)
+                                        .FirstOrDefaultAsync();
             return employee;
         }
 

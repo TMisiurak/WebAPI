@@ -21,10 +21,10 @@ namespace ProjectCore.Models
         [Required, StringLength(50)]
         public string LastName { get; set; }
 
-        [Required, Column(TypeName = "date")]
+        [Required, Column(TypeName = "datetime2(0)")]
         public DateTime DateOfBirth { get; set; }
 
-        [Required, Column(TypeName = "datetime")]
+        [Required, Column(TypeName = "datetime2(0)")]
         public DateTime CreatedAt { get; set; }
 
         [Required]

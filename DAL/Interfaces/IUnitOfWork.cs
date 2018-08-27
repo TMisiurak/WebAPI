@@ -5,6 +5,7 @@ namespace DAL.UnitOfWork
     public interface IUnitOfWork
     {
         IEmployeeRepository Employees { get; }
+        IPositionRepository Positions { get; }
 
         void BeginTransaction();
         void CommitTransaction();

@@ -32,13 +32,13 @@ namespace DAL.EF
                       .HasDefaultValue(false);
 
                 entity.Property(c => c.CreatedAt)
-                      .HasDefaultValueSql("SYSUTCDATETIME()");
+                      .HasDefaultValueSql("SYSDATETIME()");
             });
 
             modelBuilder.Entity<Position>(entity =>
             {
                 entity.Property(c => c.CreatedAt)
-                      .HasDefaultValueSql("SYSUTCDATETIME()");
+                      .HasDefaultValueSql("SYSDATETIME()");
             });
 
             foreach (var rel in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))

@@ -75,7 +75,7 @@ namespace DAL.EF
                 }
             }
 
-            if (!applicationContext.Employees.Any())
+            if (!applicationContext.Positions.Any())
             {
                 foreach (var employee in employees)
                 {

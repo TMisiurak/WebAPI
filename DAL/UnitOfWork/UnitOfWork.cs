@@ -12,6 +12,7 @@ namespace DAL.UnitOfWork
         IDbContextTransaction transaction;
 
         EmployeeRepository employeeRepository;
+        PositionRepository positionRepository;
 
         public UnitOfWork(ApplicationContext applicationContext)
         {
@@ -21,6 +22,11 @@ namespace DAL.UnitOfWork
         public IEmployeeRepository Employees
         {
             get { return employeeRepository ?? (employeeRepository = new EmployeeRepository(dbContext)); }
+        }
+
+        public IPositionRepository Positions
+        {
+            get { return positionRepository ?? (positionRepository = new PositionRepository(dbContext)); }
         }
 
         public void BeginTransaction()

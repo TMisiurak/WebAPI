@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System;
+using Newtonsoft.Json;
 
 namespace ProjectCore.Models
 {
@@ -19,6 +20,7 @@ namespace ProjectCore.Models
         [Required, Column(TypeName = "datetime")]
         public DateTime CreatedAt { get; set; }
 
+        [JsonIgnore]
         public ICollection<Employee> Employees { get; set; }
     }
 }

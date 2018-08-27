@@ -8,6 +8,8 @@ using DAL.UnitOfWork;
 using BLL.Interfaces;
 using BLL.Services;
 using AutoMapper;
+using Microsoft.AspNetCore.Cors.Infrastructure;
+using Newtonsoft.Json.Serialization;
 
 namespace WebAPI
 {
@@ -23,17 +25,40 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            var corsBuilder = new CorsPolicyBuilder();
+            corsBuilder.AllowAnyHeader();
+            corsBuilder.AllowAnyMethod();
+            corsBuilder.AllowAnyOrigin();
+            corsBuilder.AllowCredentials();
+
             services.AddCors(options =>
             {
-                options.AddPolicy("default", policy =>
-                {
-                    policy.WithOrigins("http://localhost:4200")
-                        .AllowAnyHeader()
-                        .AllowAnyMethod()
-                        .AllowCredentials();
-                });
+                //options.AddPolicy("default", policy =>
+                //{
+                //    //policy.WithOrigins("http://localhost:4200")
+                //    policy.AllowAnyOrigin()
+                //        .AllowAnyHeader()
+                //          .AllowAnyMethod();
+                //        //.AllowCredentials();
+                //});
+
+                //options.AddPolicy("ng", policy =>
+                //{
+                //    policy.WithOrigins("localhost:4200")
+                //          .AllowAnyHeader()
+                //          .AllowAnyMethod();
+                //});
+
+                options.AddPolicy("ng2", corsBuilder.Build());
             });
+
+            services.AddMvc();
+            //services.AddMvc()
+            //    .AddJsonOptions(x =>
+            //{
+            //    x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            //    x.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            //});
 
             services.AddDbContext<ApplicationContext>(options =>
             {
@@ -46,6 +71,7 @@ namespace WebAPI
             services.AddAutoMapper();
 
             services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IPositionService, PositionService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,8 +91,9 @@ namespace WebAPI
                 }
             }
 
+            app.UseCors("ng2");
             app.UseMvc();
-            app.UseCors("default");
+            //app.UseCors("default");
         }
     }
 }

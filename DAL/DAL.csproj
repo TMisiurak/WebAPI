@@ -23,4 +23,7 @@
     <Folder Include="AutoMapper\" />
     <Folder Include="AutoMapper\Profiles\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="AutoMapper\AutoMapperConfig.cs" />
+  </ItemGroup>
 </Project>
