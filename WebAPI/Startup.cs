@@ -33,32 +33,10 @@ namespace WebAPI
 
             services.AddCors(options =>
             {
-                //options.AddPolicy("default", policy =>
-                //{
-                //    //policy.WithOrigins("http://localhost:4200")
-                //    policy.AllowAnyOrigin()
-                //        .AllowAnyHeader()
-                //          .AllowAnyMethod();
-                //        //.AllowCredentials();
-                //});
-
-                //options.AddPolicy("ng", policy =>
-                //{
-                //    policy.WithOrigins("localhost:4200")
-                //          .AllowAnyHeader()
-                //          .AllowAnyMethod();
-                //});
-
                 options.AddPolicy("ng2", corsBuilder.Build());
             });
 
             services.AddMvc();
-            //services.AddMvc()
-            //    .AddJsonOptions(x =>
-            //{
-            //    x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-            //    x.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
-            //});
 
             services.AddDbContext<ApplicationContext>(options =>
             {
@@ -93,7 +71,6 @@ namespace WebAPI
 
             app.UseCors("ng2");
             app.UseMvc();
-            //app.UseCors("default");
         }
     }
 }

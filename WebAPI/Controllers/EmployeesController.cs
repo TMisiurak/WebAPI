@@ -39,8 +39,6 @@ namespace WebAPI.Controllers
             return employee != null ? (IActionResult)Ok(employee) : NotFound();
         }
 
-        // TODO Possibly create GetByGender and GetByPosition Actions
-
         [HttpPost]
         public async Task<IActionResult> Create([FromBody]EmployeeDTO employeeDTO)
         {
