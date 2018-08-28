@@ -22,6 +22,7 @@ namespace DAL.Repositories
             // TODO filter data using LINQ to SQL
             var employees = await db.Employees
                                     .Include(e => e.Position)
+                                    .Include(e => e.Gender)
                                     .Where(e => e.IsDeleted == false)
                                     .ToListAsync();
 
@@ -33,6 +34,7 @@ namespace DAL.Repositories
             // Get entity by id using extension method
             Employee employee = await db.Employees
                                         .Include(e => e.Position)
+                                        .Include(e => e.Gender)
                                         .Where(e => e.IsDeleted == false && e.Id == id)
                                         .FirstOrDefaultAsync();
             return employee;
