@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ProjectCore.Helpers.CustomAttributes;
 
 namespace ProjectCore.Models
 {
@@ -22,6 +23,7 @@ namespace ProjectCore.Models
         public string LastName { get; set; }
 
         [Required, Column(TypeName = "datetime2(0)")]
+        [ValidDate]
         public DateTime DateOfBirth { get; set; }
 
         [Required, Column(TypeName = "datetime2(0)")]
