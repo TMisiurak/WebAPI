@@ -7,6 +7,8 @@
 
   <ItemGroup>
     <Folder Include="DTO\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Helpers\CustomAttributes\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
